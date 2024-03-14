@@ -1,3 +1,5 @@
+import GridCell from "./GridCell";
+
 interface GridProps {
   cols: number;
   rows: number;
@@ -6,8 +8,8 @@ interface GridProps {
 
 const Grid = ({ cols, rows, cells }: GridProps) => {
   const cellSize = {
-    height: 12,
-    width: 12,
+    height: 20,
+    width: 20,
   };
 
   const gridStyle = {
@@ -16,6 +18,10 @@ const Grid = ({ cols, rows, cells }: GridProps) => {
     width: `${cellSize.width * cols}px`,
     transform: "translate(-50%, -50%)",
   };
+  const cellStyle = {
+    width: `${cellSize.width}px`,
+    height: `${cellSize.height}px`,
+  };
 
   return (
     <div className="grid absolute top-2/4 left-2/4 gap-1" style={gridStyle}>
@@ -23,10 +29,12 @@ const Grid = ({ cols, rows, cells }: GridProps) => {
         row.map((cell, colIndex) => {
           return (
             <div
-              className="w-3 h-3 bg-red-500/50"
-              id={`cell-${rowIndex}-${colIndex}`}
               key={`cell-${rowIndex}-${colIndex}`}
-            ></div>
+              className="grid-cell-container"
+              style={cellStyle}
+            >
+              <GridCell row={rowIndex} col={colIndex} color={0} />
+            </div>
           );
         })
       )}

@@ -1,9 +1,18 @@
 interface GridCellProps {
-  color: string;
+  col: number;
+  row: number;
+  color: number;
 }
 
-const GridCell = ({ color }: GridCellProps) => {
-  const cellBgColor = "bg-" + color + "-500/50";
+const GridCell = ({ col, row, color }: GridCellProps) => {
+  const colors = ["red"];
 
-  return <div className={"grid-cell " + cellBgColor}></div>;
+  return (
+    <div
+      className={`min-w-full min-h-full bg-${colors[color]}-500/50`}
+      id={`cell-${row}-${col}`}
+    ></div>
+  );
 };
+
+export default GridCell;
