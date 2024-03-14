@@ -1,24 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import Grid from "./components/Grid";
 
 function App() {
+  function FillCells(rows: number, cols: number) {
+    let cells = [];
+    for (let i = 0; i < rows; i++) {
+      let row = [];
+      for (let j = 0; j < cols; j++) {
+        row.push(0);
+      }
+      cells.push([...row]);
+    }
+
+    return cells;
+  }
+
+  const cols = 20;
+  const rows = 20;
+  const [cells, setCells] = useState(FillCells(rows, cols));
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="grid-container">
+        <Grid cols={cols} rows={rows} />
+      </div>
     </div>
   );
 }
