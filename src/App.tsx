@@ -23,7 +23,7 @@ function App() {
   return (
     <div className="App">
       <div className="grid-container">
-        <Grid cols={cols} rows={rows} />
+        <Grid cols={cols} rows={rows} cells={cells} />
       </div>
     </div>
   );
