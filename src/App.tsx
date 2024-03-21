@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import Grid from "./components/Grid";
 
@@ -12,24 +12,32 @@ class Tetrimino {
     this.shape = shape;
     this.color = color;
   }
+
+  public fall(): Tetrimino {
+    return new Tetrimino(
+      [this.anchor[0], this.anchor[1] + 1],
+      this.shape,
+      this.color
+    );
+  }
 }
 
 function App() {
-  function runGame() {
-    let gameOver = false;
+  useEffect(() => {
+    setTimeout(update, 1000);
+  });
 
-    while (!gameOver) {
-      let newCells = [...cells];
+  function update() {
+    console.log("update");
+    setTetrimino(tetrimino.fall());
+    let newCells = [...cells];
 
-      for (let point of tetrimino.shape) {
-        newCells[tetrimino.anchor[1] + point[1]][
-          tetrimino.anchor[0] + point[0]
-        ] = tetrimino.color;
-      }
-
-      setCells([...newCells]);
-      gameOver = true;
+    for (let point of tetrimino.shape) {
+      newCells[tetrimino.anchor[1] + point[1]][tetrimino.anchor[0] + point[0]] =
+        tetrimino.color;
     }
+
+    setCells([...newCells]);
   }
 
   function fillCells(rows: number, cols: number) {
@@ -45,15 +53,17 @@ function App() {
     return cells;
   }
 
-  const tetrimino = new Tetrimino(
-    [10, 10],
-    [
-      [0, 0],
-      [-1, 0],
-      [1, 0],
-      [0, 1],
-    ],
-    2
+  const [tetrimino, setTetrimino] = useState(
+    new Tetrimino(
+      [10, 10],
+      [
+        [0, 0],
+        [-1, 0],
+        [1, 0],
+        [0, 1],
+      ],
+      2
+    )
   );
 
   const cols = 20;
@@ -67,7 +77,7 @@ function App() {
       </div>
       <button
         type="button"
-        onClick={runGame}
+        onClick={update}
         className="absolute left-4 top-4 bg-red-500/50 p-4 rounded-md border"
       >
         Start
