@@ -8,8 +8,8 @@ interface GridProps {
 
 const Grid = ({ cols, rows, cells }: GridProps) => {
   const cellSize = {
-    height: 20,
-    width: 20,
+    height: 30,
+    width: 30,
   };
 
   const gridStyle = {
@@ -24,7 +24,7 @@ const Grid = ({ cols, rows, cells }: GridProps) => {
   };
 
   return (
-    <div className="grid absolute top-2/4 left-2/4 gap-1" style={gridStyle}>
+    <div className="grid absolute top-1/2 left-1/2" style={gridStyle}>
       {cells.map((row, rowIndex) =>
         row.map((cell, colIndex) => {
           return (
@@ -33,11 +33,7 @@ const Grid = ({ cols, rows, cells }: GridProps) => {
               className="grid-cell-container"
               style={cellStyle}
             >
-              <GridCell
-                row={rowIndex}
-                col={colIndex}
-                color={(rowIndex + colIndex) % 5}
-              />
+              <GridCell row={rowIndex} col={colIndex} color={cell} />
             </div>
           );
         })

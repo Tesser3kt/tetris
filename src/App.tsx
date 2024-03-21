@@ -2,6 +2,18 @@ import { useState } from "react";
 import "./App.css";
 import Grid from "./components/Grid";
 
+class Tetrimino {
+  anchor: number[];
+  shape: number[][];
+  color: number;
+
+  constructor(anchor: number[], shape: number[][], color: number) {
+    this.anchor = anchor;
+    this.shape = shape;
+    this.color = color;
+  }
+}
+
 function App() {
   function FillCells(rows: number, cols: number) {
     let cells = [];
@@ -15,6 +27,19 @@ function App() {
 
     return cells;
   }
+
+  const [tetrimino, setTetrimino] = useState(
+    new Tetrimino(
+      [10, 0],
+      [
+        [-1, 0],
+        [1, 0],
+        [1, 1],
+        [0, 1],
+      ],
+      2
+    )
+  );
 
   const cols = 20;
   const rows = 20;
