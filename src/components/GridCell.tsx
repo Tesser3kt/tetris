@@ -5,12 +5,13 @@ interface GridCellProps {
 }
 
 const GridCell = ({ col, row, color }: GridCellProps) => {
-  const colors = ["red"];
+  const colors = ["white", "red", "green", "blue", "cyan"];
 
   return (
     <div
-      className={`min-w-full min-h-full bg-${colors[color]}-500/50`}
+      className="min-w-full min-h-full"
       id={`cell-${row}-${col}`}
+      style={{ backgroundColor: colors[color] }}
     ></div>
   );
 };

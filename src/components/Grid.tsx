@@ -33,7 +33,11 @@ const Grid = ({ cols, rows, cells }: GridProps) => {
               className="grid-cell-container"
               style={cellStyle}
             >
-              <GridCell row={rowIndex} col={colIndex} color={0} />
+              <GridCell
+                row={rowIndex}
+                col={colIndex}
+                color={(rowIndex + colIndex) % 5}
+              />
             </div>
           );
         })
