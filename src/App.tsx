@@ -18,7 +18,18 @@ function App() {
   function runGame() {
     let gameOver = false;
 
-    while (!gameOver) {}
+    while (!gameOver) {
+      let newCells = [...cells];
+
+      for (let point of tetrimino.shape) {
+        newCells[tetrimino.anchor[1] + point[1]][
+          tetrimino.anchor[0] + point[0]
+        ] = tetrimino.color;
+      }
+
+      setCells([...newCells]);
+      gameOver = true;
+    }
   }
 
   function fillCells(rows: number, cols: number) {
@@ -34,17 +45,15 @@ function App() {
     return cells;
   }
 
-  const [tetrimino, setTetrimino] = useState(
-    new Tetrimino(
-      [10, 0],
-      [
-        [-1, 0],
-        [1, 0],
-        [1, 1],
-        [0, 1],
-      ],
-      2
-    )
+  const tetrimino = new Tetrimino(
+    [10, 10],
+    [
+      [0, 0],
+      [-1, 0],
+      [1, 0],
+      [0, 1],
+    ],
+    2
   );
 
   const cols = 20;
@@ -56,6 +65,13 @@ function App() {
       <div className="grid-container">
         <Grid cols={cols} rows={rows} cells={cells} />
       </div>
+      <button
+        type="button"
+        onClick={runGame}
+        className="absolute left-4 top-4 bg-red-500/50 p-4 rounded-md border"
+      >
+        Start
+      </button>
     </div>
   );
 }
