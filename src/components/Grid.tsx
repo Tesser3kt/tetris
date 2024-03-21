@@ -8,8 +8,8 @@ interface GridProps {
 
 const Grid = ({ cols, rows, cells }: GridProps) => {
   const cellSize = {
-    height: 30,
-    width: 30,
+    height: 20,
+    width: 20,
   };
 
   const gridStyle = {

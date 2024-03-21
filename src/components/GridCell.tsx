@@ -9,7 +9,7 @@ const GridCell = ({ col, row, color }: GridCellProps) => {
 
   return (
     <div
-      className="min-w-full min-h-full"
+      className="min-w-full min-h-full border"
       id={`cell-${row}-${col}`}
       style={{ backgroundColor: colors[color] }}
     ></div>

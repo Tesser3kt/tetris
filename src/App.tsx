@@ -15,7 +15,13 @@ class Tetrimino {
 }
 
 function App() {
-  function FillCells(rows: number, cols: number) {
+  function runGame() {
+    let gameOver = false;
+
+    while (!gameOver) {}
+  }
+
+  function fillCells(rows: number, cols: number) {
     let cells = [];
     for (let i = 0; i < rows; i++) {
       let row = [];
@@ -42,8 +48,8 @@ function App() {
   );
 
   const cols = 20;
-  const rows = 20;
-  const [cells, setCells] = useState(FillCells(rows, cols));
+  const rows = 40;
+  const [cells, setCells] = useState(fillCells(rows, cols));
 
   return (
     <div className="App">
