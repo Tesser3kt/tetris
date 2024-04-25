@@ -28,8 +28,8 @@ function App() {
   });
 
   function update() {
-    console.log("update");
-    setTetrimino(tetrimino.fall());
+    const newTetrimino = tetrimino.fall();
+    setTetrimino(newTetrimino);
     let newCells = [...cells];
 
     for (let point of tetrimino.shape) {
